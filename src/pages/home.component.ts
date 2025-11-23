@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { HeroComponent } from '../components/hero.component';
 import { BenefitsComponent } from '../components/benefits.component';
 import { ProblemsComponent } from '../components/problems.component';
@@ -19,12 +19,36 @@ import { FaqComponent } from '../components/faq.component';
     FaqComponent
   ],
   template: `
+    <!-- O Hero sempre fica no topo para manter o contexto inicial -->
     <app-hero></app-hero>
-    <app-benefits></app-benefits>
-    <app-problems></app-problems>
-    <app-methodology></app-methodology>
-    <app-about></app-about>
-    <app-faq></app-faq>
+
+    <!-- As outras seções são renderizadas em ordem aleatória -->
+    @for (section of sectionOrder(); track section) {
+      @if (section === 'benefits') { <app-benefits></app-benefits> }
+      @if (section === 'problems') { <app-problems></app-problems> }
+      @if (section === 'methodology') { <app-methodology></app-methodology> }
+      @if (section === 'about') { <app-about></app-about> }
+      @if (section === 'faq') { <app-faq></app-faq> }
+    }
   `
 })
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+  // Lista inicial das seções
+  sectionOrder = signal<string[]>(['benefits', 'problems', 'methodology', 'about', 'faq']);
+
+  ngOnInit() {
+    this.randomizeSections();
+  }
+
+  randomizeSections() {
+    const sections = ['benefits', 'problems', 'methodology', 'about', 'faq'];
+    
+    // Algoritmo Fisher-Yates para embaralhamento robusto
+    for (let i = sections.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [sections[i], sections[j]] = [sections[j], sections[i]];
+    }
+
+    this.sectionOrder.set(sections);
+  }
+}
