@@ -165,6 +165,7 @@
     .delay-500 { transition-delay: 500ms; }
 
   </style>
+<script type="module" src="./index.tsx"></script>
 <script type="importmap">
 {
   "imports": {
@@ -174,11 +175,13 @@
     "rxjs/webSocket": "https://aistudiocdn.com/rxjs@^7.8.2/webSocket?conditions=es2015",
     "rxjs/testing": "https://aistudiocdn.com/rxjs@^7.8.2/testing?conditions=es2015",
     "rxjs/fetch": "https://aistudiocdn.com/rxjs@^7.8.2/fetch?conditions=es2015",
-    "@angular/platform-browser": "https://next.esm.sh/@angular/platform-browser@^21.0.0?external=rxjs",
-    "@angular/common": "https://next.esm.sh/@angular/common@^21.0.0?external=rxjs",
     "@angular/compiler": "https://next.esm.sh/@angular/compiler@^21.0.0?external=rxjs",
+    "@angular/platform-browser": "https://next.esm.sh/@angular/platform-browser@^21.0.0?external=rxjs",
     "@angular/core": "https://next.esm.sh/@angular/core@^21.0.0?external=rxjs",
-    "@angular/router": "https://next.esm.sh/@angular/router@^21.0.0?external=rxjs"
+    "@angular/router": "https://next.esm.sh/@angular/router@^21.0.0?external=rxjs",
+    "@angular/common": "https://next.esm.sh/@angular/common@^21.0.0?external=rxjs",
+    "vite": "https://next.esm.sh/vite@^7.2.4?external=rxjs",
+    "@analogjs/vite-plugin-angular": "https://next.esm.sh/@analogjs/vite-plugin-angular@^2.1.0?external=rxjs"
   }
 }
 </script>
